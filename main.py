@@ -71,10 +71,10 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         }
         wallet = addresses[query.data]
 
-        await query.edit_message_text(
-            f"Send payment to this wallet:\n`{wallet}`\n\n⚠️ This address will self-destruct in 5 minutes.",
-            parse_mode="Markdown"
-        )
+        msg = await query.edit_message_text(
+    text=f"💎 Send your payment in {chosen} to this address:\n\n{wallet}\n\n⚠️ This address will self-destruct in 5 minutes.",
+    reply_markup=InlineKeyboardMarkup(keyboard)
+)
 
         # Auto delete after 5 mins
         await asyncio.sleep(300)
